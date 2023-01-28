@@ -44,7 +44,8 @@ public class Card {
         this.value = value;
     }  
     public String toString(){
-        return String.format("%-2d %-6S",value, suit);
+        
+        return String.format("[%-2d %-6S]",value, suit);
     }
     public int compare(Card card){
         /*
@@ -54,15 +55,14 @@ public class Card {
         -1 if the suit are equal but the value is lower
         -2 if the suits are different
         */
-        if(suit.equals(card.getSuit()))
-            return -2;
-        else if(value==card.getValue())
-            return 0;
-        else if(value>card.getValue())
-            return 1;
-        else
-            return -1;
-        
+        if(card.getSuit().equals(suit))
+            if(this.value==card.getValue())
+                return 0;
+            else if(this.value>card.getValue())
+                return 1;
+            else
+                return -1;
+        return -2; 
     }
     
 }

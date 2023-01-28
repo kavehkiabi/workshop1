@@ -16,37 +16,48 @@ public class CardTrick {
         
         Card[] hand = new Card[7];
         String[]suit={"clubs", "pades", "diamonds", "hearts"};
-
+        //card.setValue(insert call to random number generator here)
+            // 
+            //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
+            //       Don't worry about duplicates at this point
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
             card.setValue((int)(Math.random()*13+1));
             card.setSuit(suit[(int)(Math.random()*4)]);
             hand[i]=card;
-            System.out.println(card);
+            System.out.println("  "+hand[i]);
             
             
-            //card.setValue(insert call to random number generator here)
-            // 
-            //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
-            // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
-            //       Don't worry about duplicates at this point
+            
+            
         }
-        
-        Scanner input=new Scanner(System.in);
         boolean guess=false;
-        System.out.println("Please guess a type of card  1:clubs 2:pades 3:diamonds 4:hearts :");
-        int suitType=input.nextInt()-1;
-        System.out.println("Enter the card number 1 to 10 and J:11 Q:12 K:13 :");
-        int cardValue=input.nextInt();
-        for(int i=0; i<7; i++ )
-            if(hand[i].getSuit().equals(suit[suitType]))
-                if(hand[i].getValue()== cardValue)
+        int counter=1;
+        Card card1=new Card();
+        do{
+            Scanner input=new Scanner(System.in);
+            System.out.println("Please guess a type of card  1:clubs 2:pades 3:diamonds 4:hearts :");
+            card1.setSuit(suit[input.nextInt()-1]);
+            System.out.println("Enter the card number 1 to 10 and J:11 Q:12 K:13 :");
+            card1.setValue(input.nextInt());
+            for(int i=0; i<7; i++){
+                System.out.println(hand[i] +"  "+ card1);
+                int result=card1.compare(hand[i]);
+                System.out.println(result);
+                if (result==0)
                     guess=true;
-        if(guess)
-            printInfo();
-            //System.out.println("Congratulations, you guessed right!");
-        else
-            System.out.println("Sorry! may be next time.");
+            }
+                    
+            if(guess)
+                printInfo();
+            else
+                System.out.println("Sorry! may be next time.");
+            System.out.println("Your choice was "+ card1);
+            counter++;
+        }while(!guess || counter < 5);
+        
+        
             
                     
         
