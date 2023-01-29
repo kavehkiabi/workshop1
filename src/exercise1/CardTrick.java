@@ -22,7 +22,7 @@ public class CardTrick {
             card.setSuit(suit[(int)(Math.random()*4)]);
             hand[i]=card;         
         }
-        // Asks the user to guess a card 3 times
+        // Asks the user to guess a card for 3 times
         boolean guess=false;
         int counter=1;
         Card card1=new Card();
