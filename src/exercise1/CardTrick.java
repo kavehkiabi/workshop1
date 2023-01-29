@@ -16,20 +16,13 @@ public class CardTrick {
         
         Card[] hand = new Card[7];
         String[]suit={"clubs", "pades", "diamonds", "hearts"};
-        //card.setValue(insert call to random number generator here)
-            // 
-            //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
-            // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
-            //       Don't worry about duplicates at this point
+        
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
             card.setValue((int)(Math.random()*13+1));
             card.setSuit(suit[(int)(Math.random()*4)]);
             hand[i]=card;
             System.out.println("  "+hand[i]);
-            
-            
-            
             
         }
         boolean guess=false;
@@ -53,6 +46,7 @@ public class CardTrick {
                 printInfo();
             else
                 System.out.println("Sorry! may be next time.");
+            handAnalyse(hand);
             System.out.println("Your choice was "+ card1);
             counter++;
         }while(!guess || counter < 5);
@@ -84,23 +78,47 @@ public class CardTrick {
         System.out.println("Congratulations, you guessed right!");
         System.out.println();
         
-        System.out.println("My name is Paul, but you can call me prof, Paul or sir");
+        System.out.println("My name is Kaveh");
         System.out.println();
         
         System.out.println("My career ambitions:");
-        System.out.println("-- Be more active on LinkedIn");
-        System.out.println("-- Have a semester with no violations of academic integrity!");
+        System.out.println("-- Work in a large company like Amazon, Google");
 	System.out.println();	
 
         System.out.println("My hobbies:");
-        System.out.println("-- Investing");
-        System.out.println("-- Cooking");
-        System.out.println("-- Reading/Watching TV");
-        System.out.println("-- Riding my motorcycle");
+        System.out.println("-- Technology news");
+        System.out.println("-- Tv news");
+        System.out.println("-- Scocial media/Watching TV");
+        System.out.println("-- Palying piano");
 
         System.out.println();
         
     
     }
+   private static void handAnalyse(Card hand[]){
+       String[]suit={"Clubs", "Pades", "Diamonds", "Hearts"};
+       int suitNum[]= new int[4];
+       int suitSum[]= new int[4];
+       for(int i=0; i<hand.length;i++){
+           for(int j=0;j<4;j++)
+                if(hand[i].getSuit().equalsIgnoreCase(suit[j])){
+                    suitNum[j]++;
+                    suitSum[j]+=hand[i].getValue();
+                }
+                
+       }
+       System.out.println("Hint :"); 
+       for(int i=0; i<4;i++){
+           System.out.printf("%-8s : ",suit[i]);
+           System.out.printf("Number:%d  ",suitNum[i]);
+           System.out.printf("Sum:%3d",suitSum[i]);
+           System.out.println();   
+       }
+           
+       
 
+       
+  
+
+}
 }
